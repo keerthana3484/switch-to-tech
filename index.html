@@ -8,6 +8,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="manifest" href="manifest.json">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="apple-touch-icon" href="icon-192.png">
 <style>
 :root{
   --navy:#0B2447; --navy-2:#13315C; --navy-3:#1B4079;
@@ -792,6 +796,15 @@ const hero = document.querySelector('.hero');
 new IntersectionObserver(([e])=>{
   document.getElementById('stickyBar').classList.toggle('show', !e.isIntersecting);
 },{threshold:0}).observe(hero);
+</script>
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js')
+      .then(reg => console.log('Service Worker registered!'))
+      .catch(err => console.log('Service Worker registration failed: ', err));
+  });
+}
 </script>
 </body>
 </html>
